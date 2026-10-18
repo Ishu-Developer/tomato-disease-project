@@ -2,12 +2,11 @@
 
 ## College MINI Project
 
-* Project Type: College MINI Project
-* Domain: Image Processing / Computer Vision
-* Team Size: 2
-* Repository: Ishu-Developer/tomato-disease-project
+* **Project Type**: College MINI Project
+* **Domain**: Image Processing / Computer Vision
+* **Team Size**: 2
 
-Project Objective
+## Project Objective
 
 This project is a tomato leaf image classification system designed to identify three conditions from tomato leaf images:
 
@@ -54,82 +53,91 @@ Meaning of the folders
 The three subsets must remain independent to avoid data leakage.
 
 ## Work Completed So Far
-* Selected the final project scope of three tomato-leaf classes.
-* Prepared a total of 4,500 images.
-* Created the Training, Validation, and Test split.
-* Maintained separate class folders.
-* Prepared the project for the Image Processing and ML stages.
 
-Next Steps
 
-1. Image Processing / Preprocessing
+### 1. Dataset Preparation
 
-The next development stage will use image-processing techniques such as:
+- Selected three tomato leaf classes.
+- Prepared a dataset of 4,500 images.
+- Organized the images into training, validation, and testing subsets.
+- Maintained separate folders for each class.
 
-* Image loading
-* Image resizing
-* Noise reduction / filtering
-* Image enhancement
-* Contrast improvement where appropriate
-* Pixel normalization
-* Visualization of before/after preprocessing results
+### 2. Image Processing with OpenCV
 
-**OpenCV will be used for the main image-processing work.**
+A reusable preprocessing module has been implemented in `preprocessing/image_processor.py`.
 
-2. Dataset Analysis
+The module supports:
 
-We will inspect:
+- **Image loading:** Loads images using OpenCV and checks for missing or unreadable files.
+- **Image resizing:** Resizes images to 224 × 224 pixels by default.
+- **Noise reduction:** Provides optional median filtering with a kernel size of 3.
+- **Contrast enhancement:** Provides optional CLAHE (Contrast Limited Adaptive Histogram Equalization) on the lightness channel in LAB color space.
+- **Combined preprocessing:** Supports optional filtering and contrast enhancement before resizing.
 
-* Image dimensions
-* Image quality
-* Class distribution
-* Sample images from each class
+The default preprocessing pipeline loads an image, resizes it to the configured dimensions, and returns a three-channel image in OpenCV's BGR format with `uint8` pixel values. Optional enhancements are disabled by default and should be configured according to the final model's requirements.
 
-**Effects of preprocessing**
+The module has passed syntax and functional checks using a sample dataset image, including checks of its output shape and data type.
 
-3. Model Development
+### Preprocessing Comparison
 
-A suitable image-classification model will be selected and trained using the prepared dataset.
-<br>
-The model development stage will include:
+The following image compares the original sample with its resized, median-filtered, and CLAHE-enhanced versions.
 
-1. Training
-2. Validation
-3. Model improvement
-4. Final model saving
+![Preprocessing comparison](results/preprocessing/preprocessing_comparison.jpg)
 
-4. Model Evaluation
+This comparison demonstrates the visual effects of the selected image-processing operations. It is a qualitative illustration only; it does not establish that preprocessing improves classification accuracy.
 
-The final model will be evaluated on the test set using appropriate metrics such as:
+# Current Technology Stack
 
-* Accuracy
-* Precision
-* Recall
-* F1-score
-* Confusion matrix
+- Python
+- OpenCV
+- NumPy
+- Pillow
+- Streamlit
+- Jupyter Notebook
+- PyTorch (planned for model integration, subject to the final model implementation)
+- Git and GitHub
+- Visual Studio Code
 
-No performance metrics will be reported until the model has actually been trained and evaluated.
+# Next Development Steps
 
-## Technology Stack
+### 1. Build the Streamlit WebApp
 
-**Python**
-* OpenCV
-* NumPy
-* Pandas
-* Matplotlib
-* PyTorch
-* Streamlit
-* Jupyter Notebook
-* Git / GitHub
-* VS Code
+- Create the application interface in the `webapp/` directory.
+- Add an image-upload option for tomato leaf images.
+- Display the uploaded image and its preprocessed preview.
+- Add suitable validation and error handling for unsupported or unreadable files.
+
+### 2. Integrate the Trained Model
+
+- Confirm the model architecture, input dimensions, and preprocessing requirements.
+- Integrate the saved model artifact once model training is complete.
+- Connect the image-processing module to the model inference pipeline.
+- Display the predicted class and confidence score only when supported by the model output.
+
+### 3. Test the Complete Pipeline
+
+- Test image upload, preprocessing, and prediction.
+- Handle invalid files and inference errors.
+- Check that the same required preprocessing is applied during model training and inference.
+- Keep the test dataset separate from training and model tuning.
+
+### 4. Evaluate the Model
+
+Once training and evaluation are completed, report appropriate metrics, such as:
+
+- Accuracy
+- Precision
+- Recall
+- F1-score
+- Confusion matrix
+
+No model accuracy or classification-performance claims are made at this stage because verified training and evaluation results are not yet available.
 
 ## Project Status
 
-* Current Stage: Dataset preparation completed
-* Dataset: 4,500 images
-* Classes: 3
-* Train: 3,150 images
-* Validation: 675 images
-* Test: 675 images
-
-Next Stage: Image Processing / OpenCV preprocessing
+- **Dataset preparation:** Completed
+- **Image-processing module:** Implemented and functionally tested
+- **Preprocessing comparison:** Generated
+- **Streamlit WebApp:** Next development stage
+- **Model integration:** Pending confirmation of the trained model and its requirements
+- **Final evaluation:** Pending model training and testing
