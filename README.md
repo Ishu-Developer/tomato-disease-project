@@ -84,7 +84,9 @@ The following image compares the original sample with its resized, median-filter
 
 ![Preprocessing comparison](results/preprocessing/preprocessing_comparison.jpg)
 
-This comparison demonstrates the visual effects of the selected image-processing operations. It is a qualitative illustration only; it does not establish that preprocessing improves classification accuracy.
+This comparison demonstrates the visual effects of the selected image-processing operations.
+
+During preliminary visual inspection, the CLAHE-enhanced early-blight sample showed clearer visibility of leaf spots compared with the original image. This is a qualitative observation from the tested sample, not evidence of improved disease-classification accuracy. Further testing across the dataset and model evaluation will be required.
 
 # Current Technology Stack
 
@@ -138,6 +140,6 @@ No model accuracy or classification-performance claims are made at this stage be
 - **Dataset preparation:** Completed
 - **Image-processing module:** Implemented and functionally tested
 - **Preprocessing comparison:** Generated
-- **Streamlit WebApp:** Next development stage
+- - **Streamlit WebApp:** Basic image upload, preview, resizing, and optional preprocessing controls implemented and tested
 - **Model integration:** Pending confirmation of the trained model and its requirements
 - **Final evaluation:** Pending model training and testing
